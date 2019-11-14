@@ -1,5 +1,11 @@
 package com.example.myapplication.Utils;
 
+import com.example.myapplication.Model.Washroom;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Haversine {
     public static final double R = 6372.8; // In kilometers
 
@@ -14,4 +20,18 @@ public class Haversine {
         return R * c;
     }
 
+    public static List<Washroom> getPointsWithin(double radius, List<Washroom> list, double lat, double lon) {
+        List result = new ArrayList();
+
+        for(Washroom washroom : list) {
+            double[] coords = washroom.getCoordinates();
+            double distance = calculateDistance(lat, lon, coords[1], coords[0]);
+
+            if(distance < radius) {
+                result.add(washroom);
+            }
+        }
+
+        return result;
+    }
 }

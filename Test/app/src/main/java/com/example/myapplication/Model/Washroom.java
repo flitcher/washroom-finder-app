@@ -8,14 +8,14 @@ public class Washroom {
     private String note;
     private String summer_hours;
     private String geon_type;
-    private float[] coordinates;
+    private double[] coordinates;
     private String location;
     private String address;
     private String winter_hours;
     private String type;
     private String geo_local_area;
 
-    public Washroom(String maintainer, String name, String wheel_access, String primaryind, String note, String summer_hours, String geon_type, float[] coordinates, String location, String address, String winter_hours, String type, String geo_local_area) {
+    public Washroom(String maintainer, String name, String wheel_access, String primaryind, String note, String summer_hours, String geon_type, double[] coordinates, String location, String address, String winter_hours, String type, String geo_local_area) {
         this.maintainer = maintainer;
         this.name = name;
         this.wheel_access = wheel_access;
@@ -91,11 +91,11 @@ public class Washroom {
         this.geon_type = geon_type;
     }
 
-    public float[] getCoordinates() {
+    public double[] getCoordinates() {
         return coordinates;
     }
 
-    public void setCoordinates(float[] coordinates) {
+    public void setCoordinates(double[] coordinates) {
         this.coordinates = coordinates;
     }
 
