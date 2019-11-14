@@ -33,8 +33,13 @@ public class JsonUtils {
 
                 JSONObject geomInfo = fieldInfo.getJSONObject("geom");
                 washroom.setGeon_type(geomInfo.getString("type"));
-                String temp = geomInfo.get("coordinates").toString();
-                washroom.setCoordinates(Float.parseFloat(temp)); // TODO : could fail
+
+                JSONArray coordinates = geomInfo.getJSONArray("coordinates");
+                double[] coord = new double[coordinates.length()];
+                for(int j = 0; j < coordinates.length(); j++) {
+                    coord[j] = coordinates.optDouble(j);
+                }
+                washroom.setCoordinates(coord);
 
                 washroom.setLocation(fieldInfo.getString("location"));
                 washroom.setAddress(fieldInfo.getString("address"));
