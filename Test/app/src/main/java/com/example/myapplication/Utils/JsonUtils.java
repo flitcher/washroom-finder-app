@@ -1,4 +1,4 @@
-package com.example.myapplication.Utilities;
+package com.example.myapplication.Utils;
 
 import com.example.myapplication.Model.Washroom;
 
@@ -14,7 +14,7 @@ public class JsonUtils {
         List<Washroom> list = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(json);
-            JSONArray jsonArray = jsonObject
+            
 
         } catch (JSONException e) {
             e.printStackTrace();
