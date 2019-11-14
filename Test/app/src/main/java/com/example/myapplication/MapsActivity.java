@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.myapplication.Model.Washroom;
 import com.example.myapplication.Utils.JsonUtils;
 import com.example.myapplication.Utils.Haversine;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -19,11 +20,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private String washroomFromJson;
+    private List<Washroom> washrooms = new ArrayList<>();
     private final static String PATH_TO_FILE = "public-washrooms.json";
 
     @Override
@@ -35,7 +39,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         washroomFromJson = getJsonStringFromFile(PATH_TO_FILE);
-        JsonUtils.parseWashroomJsonFile(washroomFromJson);
+        washrooms = JsonUtils.parseWashroomJsonFile(washroomFromJson);
 
     }
 
