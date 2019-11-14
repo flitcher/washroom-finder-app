@@ -63,16 +63,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         LatLng sfu = new LatLng(currLat, currLon);
         mMap.addMarker(new MarkerOptions().position(sfu).title("Base Location"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sfu, 15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sfu, 10));
 
-        double distance = Haversine.calculateDistance(currLat, currLon, 49.2552329902121, -123.049933959326);
-
-        Toast toast = Toast.makeText(getApplicationContext(),
-                "" + distance + "km",
-                Toast.LENGTH_LONG);
-
-        toast.show();
-
+        List<double[]> list = Haversine.getPointsWithin(10.0, washrooms, currLat, currLon);
+        System.out.println("__________________   " + washrooms.size());
+        for(double[] coords : list) {
+            LatLng loc = new LatLng(coords[1], coords[0]);
+            mMap.addMarker(new MarkerOptions().position(loc));
+        }
 
         
 
