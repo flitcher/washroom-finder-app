@@ -4,8 +4,10 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.myapplication.Utils.JsonUtils;
+import com.example.myapplication.Utils.Haversine;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -52,9 +54,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        double currLat = 49.284731;
+        double currLon = -123.111646;
+
+        LatLng sfu = new LatLng(currLat, currLon);
+        mMap.addMarker(new MarkerOptions().position(sfu).title("Base Location"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sfu, 15));
+
+        double distance = Haversine.calculateDistance(currLat, currLon, 49.2552329902121, -123.049933959326);
+
+        Toast toast = Toast.makeText(getApplicationContext(),
+                "" + distance + "km",
+                Toast.LENGTH_LONG);
+
+        toast.show();
+
     }
 
     public String getJsonStringFromFile (String filename) {
