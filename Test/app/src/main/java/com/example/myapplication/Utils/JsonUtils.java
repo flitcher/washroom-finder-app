@@ -24,15 +24,15 @@ public class JsonUtils {
                 Washroom washroom = new Washroom();
                 JSONObject fieldInfo = jsonArray.getJSONObject(i).getJSONObject("fields");
 
-                washroom.setMaintainer(fieldInfo.getString("maintainer"));
-                washroom.setName(fieldInfo.getString("name"));
-                washroom.setWheel_access(fieldInfo.getString("wheel_access"));
-                washroom.setPrimaryind(fieldInfo.getString("primaryind"));
-                washroom.setNote(fieldInfo.getString("note"));
-                washroom.setSummer_hours(fieldInfo.getString("summer_hours"));
+                washroom.setMaintainer(checkNull(fieldInfo.getString("maintainer")));
+                washroom.setName(checkNull(fieldInfo.getString("name")));
+                washroom.setWheel_access(checkNull(fieldInfo.getString("wheel_access")));
+                washroom.setPrimaryind(checkNull(fieldInfo.getString("primaryind")));
+                washroom.setNote(checkNull(fieldInfo.getString("note")));
+                washroom.setSummer_hours(checkNull(fieldInfo.getString("summer_hours")));
 
                 JSONObject geomInfo = fieldInfo.getJSONObject("geom");
-                washroom.setGeon_type(geomInfo.getString("type"));
+                washroom.setGeon_type(checkNull(geomInfo.getString("type")));
 
                 JSONArray coordinates = geomInfo.getJSONArray("coordinates");
                 double[] coord = new double[coordinates.length()];
@@ -41,11 +41,11 @@ public class JsonUtils {
                 }
                 washroom.setCoordinates(coord);
 
-                washroom.setLocation(fieldInfo.getString("location"));
-                washroom.setAddress(fieldInfo.getString("address"));
-                washroom.setWinter_hours(fieldInfo.getString("winter_hours"));
-                washroom.setType(fieldInfo.getString("type"));
-                washroom.setGeo_local_area(fieldInfo.getString("geo_local_area"));
+                washroom.setLocation(checkNull(fieldInfo.getString("location")));
+                washroom.setAddress(checkNull(fieldInfo.getString("address")));
+                washroom.setWinter_hours(checkNull(fieldInfo.getString("winter_hours")));
+                washroom.setType(checkNull(fieldInfo.getString("type")));
+                washroom.setGeo_local_area(checkNull(fieldInfo.getString("geo_local_area")));
 
                 washrooms.add(washroom);
             }
@@ -54,6 +54,13 @@ public class JsonUtils {
             e.printStackTrace();
         }
         return washrooms;
+    }
+
+    private static String checkNull (String param) {
+        if(param == null) {
+            return "";
+        }
+        return param;
     }
 
 

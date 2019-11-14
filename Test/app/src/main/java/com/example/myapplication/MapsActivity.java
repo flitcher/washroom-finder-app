@@ -40,7 +40,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         washroomFromJson = getJsonStringFromFile(PATH_TO_FILE);
         washrooms = JsonUtils.parseWashroomJsonFile(washroomFromJson);
-
     }
 
 
