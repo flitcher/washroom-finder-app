@@ -69,6 +69,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         toast.show();
 
+
+        
+
     }
 
     public String getJsonStringFromFile (String filename) {
