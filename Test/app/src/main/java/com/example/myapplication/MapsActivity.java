@@ -62,13 +62,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         LatLng sfu = new LatLng(currLat, currLon);
         mMap.addMarker(new MarkerOptions().position(sfu).title("Base Location"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sfu, 10));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sfu, 15));
 
-        List<double[]> list = Haversine.getPointsWithin(10.0, washrooms, currLat, currLon);
-        System.out.println("__________________   " + washrooms.size());
+        List<double[]> list = Haversine.getPointsWithin(1.0, washrooms, currLat, currLon);
+
         for(double[] coords : list) {
             LatLng loc = new LatLng(coords[1], coords[0]);
-            mMap.addMarker(new MarkerOptions().position(loc));
+            mMap.addMarker(new MarkerOptions().position(loc).title("WASHROOM"));
         }
 
         

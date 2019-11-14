@@ -22,7 +22,7 @@ public class Haversine {
 
     public static List<double[]> getPointsWithin(double radius, List<Washroom> list, double lat, double lon) {
         List<double[]> result = new ArrayList<>();
-        System.out.println("XXXXXXXXXXXXXXXXXX " + list.size());
+
         for(Washroom washroom : list) {
             double[] coords = washroom.getCoordinates();
             double distance = calculateDistance(lat, lon, coords[1], coords[0]);
